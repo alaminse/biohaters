@@ -1,0 +1,9 @@
+# Ignore uploads or user-generated content
+/admin/assets
+/admin/employee/assets
+/assets
+
+
+
+# Ignore server-specific files
+.htaccess

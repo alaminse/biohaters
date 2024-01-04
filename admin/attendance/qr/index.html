@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background: powderblue;
+        }
+
+        .card {
+            width: 400px;
+            background: white;
+            padding: 2.5rem;
+            border-radius: 1.5rem;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, .2);
+            transition: .4s;
+        }
+
+        .form {
+            display: grid;
+        }
+
+        input {
+            background: #DDDDDD;
+            border: 0;
+            outline: 0;
+            padding: .5rem 1.5rem;
+            line-height: 1.75rem;
+            margin-bottom: 1rem;
+            border-radius: .5rem;
+            letter-spacing: 4px;
+            transition: .4s;
+        }
+
+        button {
+            background: powderblue;
+            border: 0;
+            outline: 0;
+            padding: .5rem 1.5rem;
+            line-height: 1.75rem;
+            border-radius: .5rem;
+            transition: .4s;
+            font-weight: bold;
+            color: aliceblue;
+            font-size: 1rem;
+            cursor: pointer;
+            letter-spacing: 4px;
+        }
+
+        button:hover {
+            background: palevioletred;
+        }
+
+        .qr-code {
+            visibility: hidden;
+            opacity: 0;
+            padding: 2.5rem 2.5rem 0;
+            display: flex;
+            justify-content: center;
+        }
+
+        .card.active .qr-code {
+            visibility: visible;
+            opacity: 1;
+        }
+    </style>
+</head>
+<body>
+    <div class="card">
+        <div class="form">
+            <input type="text" name="roll" id="roll" placeholder="BH Roll">
+            <button>Generate Code</button>
+        </div>
+        <div class="qr-code">
+            <img src="" alt="">
+        </div>
+    </div>
+
+<script>
+const wrapper = document.querySelector('.card')
+const qrInput = wrapper.querySelector('.form input')
+const generateBtn = wrapper.querySelector('.form button')
+const qrImg = wrapper.querySelector('.qr-code img')
+
+generateBtn.addEventListener('click', () => {
+    let qrValue = qrInput.value;
+
+    if(!qrValue) return;
+    generateBtn.innerText = "Generating Code....";
+
+    qrImg.src = `https://api.qrserver.com/v1/create-qr-code/?size=150x150&data=${qrValue}`;
+    qrImg.addEventListener('load', () => {
+        wrapper.classList.add('active')
+        generateBtn.innerText = "Generate Code"
+    })
+})
+</script>
+</body>
+</html>

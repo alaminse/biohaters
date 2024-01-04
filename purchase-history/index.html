@@ -1,0 +1,269 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!--=========== BOOTSTRAP CSS ===========-->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <!--=========== JQUERY ===========-->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+
+    <!--=========== BOOTSTRAP JS ===========-->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+
+    <!--=============== BOX ICONS ===============-->
+	<link rel="stylesheet" href="https://unpkg.com/boxicons@latest/css/boxicons.min.css">
+
+    <!--=========== SOLAIMANLIPI FONT ===========-->
+    <link href="https://fonts.maateen.me/solaiman-lipi/font.css" rel="stylesheet">
+
+    <!--=========== FAV ICON ===========-->
+    <link rel="shortcut icon" type="image/png" href="../assets/img/logo.png">
+
+    <!--=========== STYLE CSS ===========-->
+    <link rel="stylesheet" href="../assets/css/dashboard-style.css">
+
+    <!--=========== LOGIN CSS ===========-->
+    <link rel="stylesheet" href="../assets/css/dashboard.css">
+
+    <title>Biology Haters</title>
+</head>
+<body>
+
+<!--=========== HEADER ===========-->
+<header id="nav-menu">
+    <nav>
+        <a href="index.php">
+            <img src="../assets/img/logo.png" alt="">
+        </a>
+
+        <!--== NAV CLOSE ==-->
+        <i class='bx bxs-chevron-left nav_close' id="nav-close"></i>
+
+        <ul>
+            <a href="../dashboard/">
+                <li>
+                    <i class='bx bxs-dashboard'></i> Dashboard
+                </li>
+            </a>
+
+            <a href="../course/">
+                <li>
+                    <i class='bx bxs-book-open'></i> Course
+                </li>
+            </a>
+
+            <a href="../chapter/">
+                <li>
+                    <i class='bx bxs-book-content' ></i> Resource
+                </li>
+            </a>
+
+            <a href="../day-time/">
+                <li>
+                    <i class='bx bxs-time-five'></i> Schedule
+                </li>
+            </a>
+
+            <a href="../blog/">
+                <li>
+                    <i class='bx bx-line-chart' ></i> Exam History
+                </li>
+            </a>
+        </ul>
+    </nav>
+
+    <ul class="down_menu">
+        <a href="../setting/">
+            <li>
+                <i class='bx bxs-cog'></i> Profile Setting
+            </li>
+        </a>
+        
+        <a href="../logout/">
+            <li>
+                <i class='bx bx-log-out'></i> Log out
+            </li>
+        </a>
+    </ul>
+</header>
+
+<!--=========== MAIN ===========-->
+<main>
+    <section class="top_section">
+        <div class="top_container hc_container">
+            <!--==== TOGGLE BUTTON ====-->
+            <div class="nav_toggle" id="nav-toggle">
+                <i class='bx bx-menu'></i>
+            </div>
+
+            <!--==== NAV PROFILE DROPDOWN BUTTON ====-->
+            <div class="ep_flex ep_start">
+                <div>
+                    <div class="profile_dropdown_name text_right">Mehedi Hasan</div>
+                    <div class="profile_dropdown_roll text_right">Roll: 394781</div>
+                </div>
+                <div class="hc_dropdown">
+                    <div class="hc_dropdown_wrapper btn_icon">
+                        <img src="../assets/img/student.png" alt="" class="hc_dropdown_btn">
+                    </div>
+                    
+                    <div class="hc_dropdown_list profile_dropdown_list">
+                        <!-- PROFILE -->
+                        <a href="../profile/">Profile</a>
+
+                        <!-- MODULE -->
+                        <a href="../logout/">Logout</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!--=========== PAGE TITLE SECTION ===========-->
+    <section class="page_section hc_section">
+        <div class="ep_flex hc_container">
+            <h3 class="hc_page_title">Purchase History</h3>
+        </div>
+    </section>
+
+    <!--=========== PROFILE FORM SECTION ===========-->
+    <section class="hc_section">
+        <div class="invoice_container hc_container ep_grid">
+            <!--=========== INVOICE CARD ===========-->
+            <div class="invoice_card">
+                <h4 class="invoice_card_no">INVOICE # 02</h4>
+                <p class="invoice_card_date">05 Dec, 2023</p>
+                <h3 class="invoice_card_item">Course Item</h3>
+                <p class="invoice_card_amount">BDT 3000.00/-</p>
+                <a href="" class="button btn_sm">View <i class='bx bxs-chevron-right'></i></a>
+            </div>
+
+            <!--=========== INVOICE CARD ===========-->
+            <div class="invoice_card">
+                <h4 class="invoice_card_no">INVOICE # 02</h4>
+                <p class="invoice_card_date">05 Dec, 2023</p>
+                <h3 class="invoice_card_item">Course Item</h3>
+                <p class="invoice_card_amount">BDT 3000.00/-</p>
+                <a href="" class="button btn_sm">View <i class='bx bxs-chevron-right'></i></a>
+            </div>
+
+            <!--=========== INVOICE CARD ===========-->
+            <div class="invoice_card">
+                <h4 class="invoice_card_no">INVOICE # 02</h4>
+                <p class="invoice_card_date">05 Dec, 2023</p>
+                <h3 class="invoice_card_item">Course Item</h3>
+                <p class="invoice_card_amount">BDT 3000.00/-</p>
+                <a href="" class="button btn_sm">View <i class='bx bxs-chevron-right'></i></a>
+            </div>
+
+            <!--=========== INVOICE CARD ===========-->
+            <div class="invoice_card">
+                <h4 class="invoice_card_no">INVOICE # 02</h4>
+                <p class="invoice_card_date">05 Dec, 2023</p>
+                <h3 class="invoice_card_item">Course Item</h3>
+                <p class="invoice_card_amount">BDT 3000.00/-</p>
+                <a href="" class="button btn_sm">View <i class='bx bxs-chevron-right'></i></a>
+            </div>
+        </div>
+    </section>
+</main>
+
+<!--=========== CUSTOM JS ===========-->
+<script>
+/*========= MENU SIDEBAR =========*/
+const navMenu = document.getElementById('nav-menu'),
+    navToggle = document.getElementById('nav-toggle'),
+    navClose = document.getElementById('nav-close')
+
+/*========= MENU SHOW =========*/
+if(navToggle){
+    navToggle.addEventListener('click', () =>{
+        navMenu.classList.add('show-menu')
+    })
+}
+
+/*========= MENU HIDE =========*/
+if(navClose){
+    navClose.addEventListener('click', () =>{
+        navMenu.classList.remove('show-menu')
+    })
+}
+
+/*========= REMOVE MENU MOBILE =========*/
+const navLink = document.querySelectorAll('.nav_link')
+
+function linkAction(){
+    navMenu.classList.remove('show-menu')
+}
+
+navLink.forEach(n => n.addEventListener('click', linkAction))
+
+/*========== CHANGE THE TAB =============*/
+const currentLocation = location.href;
+const menuItem = document.querySelectorAll('header nav ul a');
+const menuLength = menuItem.length
+for (let i = 0; i < menuLength; i++) {
+    if (menuItem[i].href === currentLocation) {
+        menuItem[i].classList.remove('active-link');
+        menuItem[i].classList.add('active-link');
+    }
+}
+
+/*========= MODAL =========*/
+/*===== SHOW MODAL =====*/
+const openModalButtons = document.querySelectorAll('[data-modal-target]')
+const closeModalButtons = document.querySelectorAll('[data-close-button]')
+
+openModalButtons.forEach(button => {
+    button.addEventListener('click', () => {
+        const modal = document.querySelector(button.dataset.modalTarget)
+        openModal(modal)
+    })
+})
+
+function openModal(modal) {
+    if (modal == null) return
+    modal.classList.add('show-modal')
+}
+
+/*===== CLOSE MODAL =====*/
+closeModalButtons.forEach(button => {
+    button.addEventListener('click', () => {
+        const modal = button.closest('.modal_container')
+        closeModal(modal)
+    })
+})
+
+function closeModal(modal) {
+    if (modal == null) return
+    modal.classList.remove('show-modal')
+}
+
+/*========= DROPDOWN =========*/
+document.querySelectorAll(".hc_dropdown").forEach(multiAction => {
+    const menuButton = multiAction.querySelector(".hc_dropdown_wrapper");
+    const list = multiAction.querySelector(".hc_dropdown_list");
+
+    menuButton.addEventListener("click", () => {
+        list.classList.toggle("active");
+    });
+});
+
+document.addEventListener("click", e => {
+    const keepOpen = (
+        e.target.matches(".hc_dropdown_list")
+        || e.target.matches(".hc_dropdown_wrapper")
+        || e.target.matches(".hc_dropdown_btn")
+    );
+
+    if (keepOpen) return;
+
+    document.querySelectorAll(".hc_dropdown_list").forEach(list => {
+        list.classList.remove("active");
+    });
+});
+</script>
+</body>
+</html>

@@ -1,0 +1,3 @@
+db: rubiaeaw_qr_attend
+user: rubiaeaw_qr_attend
+pass: rubiaeaw_qr_attend
