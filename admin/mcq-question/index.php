@@ -128,6 +128,9 @@
         }
     }?>
 <main>
+
+    <style>
+    </style>
     <!-- page title -->
     <div class="ep_section">
         <div class="ep_container">
@@ -259,8 +262,6 @@
                             <button type="button" class="btn_sm" data-bs-toggle="modal" data-bs-target="#pdf<?= $exam_id; ?>"><i class='bx bxs-file'></i>Get PDF</button>
                             <button type="button" class="btn_sm" data-bs-toggle="modal" data-bs-target="#clone<?= $exam_id; ?>"><i class='bx bxs-file'></i>Clone</button>
                             <button type="button" class="btn_sm" data-bs-toggle="modal" data-bs-target="#add<?= $exam_id; ?>"><i class='bx bxs-file'></i>Add</button>
-                            <!--<a href="../mcq-question/?exam=<?= $exam_id ?>&add=single" class="button btn_sm"><i class='bx bxs-file'></i>Add Single</a>-->
-                            <!--<a href="../mcq-question/?exam=<?= $exam_id ?>&add" class="button btn_sm"><i class='bx bxs-file'></i>Add</a>-->
                         </div>
                     </div>
                     
@@ -358,6 +359,27 @@
                     <table class="ep_table" id="datatable">
                         <thead>
                             <tr>
+                                <th>
+                                    <button type="button" data-bs-toggle="modal" data-bs-target="#allDelete" style="margin-left: 1rem; padding: 0.3rem 0.3rem; border-radius: 1rem;" id="qDeleteBtn" class="button"><i class="bx bxs-trash"></i></button>
+                                    <!-- DELETE MODAL -->
+                                    <div class="modal fade" id="allDelete" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                        <div class="modal-dialog">
+                                            <div class="modal-content">
+                                                <div class="modal-header">
+                                                    <h5 class="modal-title" id="exampleModalLabel">Delete Question</h5>
+                                                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                                </div>
+                                                <div class="modal-body">
+                                                    Do you want to delete?
+                                                </div>
+                                                <div class="modal-footer">
+                                                    <button type="button" class="button btn_trp" data-bs-dismiss="modal">Close</button>
+                                                    <button type="button" id="modalDeleteBtn" class="button bg_danger text_danger text_semi">Delete</button>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </th>
                                 <th>SI</th>
                                 <th>Question</th>
                                 <th>Type</th>
@@ -387,6 +409,9 @@
                                     $si++;
                                     ?>
                                     <tr>
+                                        <td>
+                                            <input type="checkbox" class="question-checkbox" name="question_id[]" value="<?php echo $question_id; ?>">
+                                        </td>
                                         <td><?php echo $si; ?></td>
 
                                         <td><?php echo $question_title; ?></td>
@@ -445,14 +470,6 @@
     }?>
 </main>
 
-<!--========== CKEDITOR JS =============-->
-<script src="https://cdn.ckeditor.com/4.18.0/standard/ckeditor.js"></script>
-
-<script>
-/*========== POST DESCRIPTION CKEDITOR =============*/
-CKEDITOR.replace( 'des' );
-</script>
-
 <!--=========== DATATABLE ===========-->
 <script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.13.2/js/jquery.dataTables.js"></script>
 <script type="text/javascript" src="https://cdn.datatables.net/buttons/2.3.4/js/dataTables.buttons.min.js"></script>
@@ -463,16 +480,39 @@ CKEDITOR.replace( 'des' );
 <script type="text/javascript" src="https://cdn.datatables.net/buttons/2.3.4/js/buttons.print.min.js"></script>
 
 <script>
-/*========= DATATABLE CUSTOM =========*/
-$(document).ready( function () {
-    $('#datatable').DataTable( {
-        dom: 'Bfrtip',
-        // order: [[0, 'desc']],
-        buttons: [
-            'copy', 'csv', 'excel', 'pdf', 'print'
-        ]
-    } );
-} );
+    
+    /*========= DATATABLE CUSTOM =========*/
+    $(document).ready( function () {
+        $('#datatable').DataTable( {
+            dom: 'Bfrtip',
+            buttons: [
+                'copy', 'csv', 'excel', 'pdf', 'print'
+            ]
+        });
+    });
+
+    $(document).ready(function() {
+        $('#modalDeleteBtn').on('click', function() {
+            var ids = [];
+            $('.question-checkbox:checked').each(function() {
+                ids.push($(this).val());
+            });
+
+            $.ajax({
+                url: 'delete_items.php',
+                method: 'POST',
+                data: { delete_ids: ids },
+                success: function(response) {
+                    location.reload();
+                },
+                error: function(xhr, status, error) {
+                    // Handle error
+                    console.error(error);
+                }
+            });
+        });
+    });
+
 </script>
 
 <?php } else { ?><script type="text/javascript">window.location.href = '../exam/';</script><?php } ?>

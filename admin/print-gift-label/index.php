@@ -92,14 +92,14 @@
                     }
 
                     // fetch check partner
-                    $select_check_partner = "SELECT * FROM hc_purchase WHERE discount_reason = '$student_data_roll' AND is_expired = 0";
-                    $sql_check_partner = mysqli_query($db, $select_check_partner);
-                    $num_check_partner = mysqli_num_rows($sql_check_partner);
-                    if ($num_check_partner == 1) {
-                        $gift_set = '2 Set';
-                    } else {
-                        $gift_set = '1 Set';
-                    }
+                    // $select_check_partner = "SELECT * FROM hc_purchase WHERE discount_reason = '$student_data_roll' AND is_expired = 0";
+                    // $sql_check_partner = mysqli_query($db, $select_check_partner);
+                    // $num_check_partner = mysqli_num_rows($sql_check_partner);
+                    // if ($num_check_partner == 1) {
+                    //     $gift_set = '2 Set';
+                    // } else {
+                    //     $gift_set = '1 Set';
+                    // }
                     
                     if ($gift_is_delivered == 0) {
                         $msg = "Your Course Gift has sent to Courier. Please keep alert to recieve the gift\r-Biology Haters";
@@ -159,7 +159,7 @@
                                     </div>
                                     <div class="card-footer">
                                         <div class=""><?= $course_name ?></div>
-                                        <div class="">QTY - <?= $gift_set ?></div>
+                                        <div class="">QTY - 1 Set</div>
                                     </div>
                                 </div>
                             </div>
