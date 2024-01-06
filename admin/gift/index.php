@@ -37,11 +37,10 @@
             }
         }
     ?>
-    <?php if (isset($_GET['print'])) {
+    <!-- <?php if (isset($_GET['print'])) {
         ?>
         <div class="ep_section">
             <div class="ep_container">
-                <!--========== ADD COURSE ==========-->
                 <div class="mng_category">
                     <div class="ep_flex mb_75">
                         <h5 class="box_title">Print Label</h5>
@@ -64,7 +63,7 @@
             </div>
         </div>
         <?php 
-    }?>
+    }?> -->
 
     <?php
         $name = 'HSC 2025 : First Semester';
@@ -86,13 +85,15 @@
                         <a href="?name=HSC 2024 : Second Semester" class="button btn_sm <?php echo ($name == 'HSC 2024 : Second Semester') ? 'active' : ''; ?>">HSC 2024 : Second Semester</a>
                     </div>
                     <div class="btn_grp">
-                        <a href="../gift/?print" class="button btn_sm">Print Label</a>
+                        <a href="#" id="printLabelBtn" class="button btn_sm">Print Label</a>
+                        <!-- <a href="../gift/?print" class="button btn_sm">Print Label</a> -->
                     </div>
                 </div>
 
                 <table class="ep_table">
                     <thead>
                         <tr>
+                            <th>Select</th>
                             <th>SI</th>
                             <th>Invoice No.</th>
                             <th>Name</th>
@@ -107,7 +108,6 @@
                     <tbody>
 
                     <?php
-                    
                         $select = "SELECT c.id AS courier_id, c.student_id, c.purchase_id, c.courier_address, c.update_date AS courier_update_date, c.is_delivered,
                                 s.name AS student_name, s.phone AS student_phone, s.roll AS student_roll,
                                 pd.item_id AS purchase_item_id,
@@ -137,6 +137,9 @@
                                 $course_name = $row['course_name'];
                             ?>
                                 <tr>
+                                    <td>
+                                        <input type="checkbox" name="purchase_id[]" value="<?php echo $gift_purchase_id; ?>">
+                                    </td>
                                     <td><?php echo $si; ?></td>
                                     <td><?php echo $gift_purchase_id; ?></td>
                                     <td><?php echo $student_data_name; ?></td>
@@ -171,5 +174,33 @@
     </div>
 
 </main>
+<script>
+    document.getElementById('printLabelBtn').addEventListener('click', function() {
+        var checkboxes = document.querySelectorAll('input[name="purchase_id[]"]:checked');
+        var purchaseIds = [];
+
+        checkboxes.forEach(function(checkbox) {
+            purchaseIds.push(checkbox.value);
+        });
+
+        // Create a form dynamically
+        var form = document.createElement('form');
+        form.setAttribute('method', 'post');
+        form.setAttribute('action', '../print-gift-label/'); // Replace with your PHP page URL
+
+        // Create a hidden input field to store the purchaseIds
+        var input = document.createElement('input');
+        input.setAttribute('type', 'hidden');
+        input.setAttribute('name', 'selected_purchase_ids');
+        input.setAttribute('value', purchaseIds.join(',')); // Convert array to comma-separated string
+
+        // Append the input to the form
+        form.appendChild(input);
+
+        // Append the form to the document body and submit
+        document.body.appendChild(form);
+        form.submit();
+});
+</script>
 
 <?php include('../assets/includes/footer.php'); ?>
