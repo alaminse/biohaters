@@ -43,7 +43,7 @@
                     }
                     ?>
                     <script type="text/javascript">
-                        window.location.href = 'https://biohaters.com/purchase/success.php?<?= $url ?>';
+                        window.location.href = 'http://localhost/biohaters/purchase/success.php?<?= $url ?>';
                     </script>
                     <?php 
                     exit;
@@ -60,7 +60,7 @@
                             </div>
                 
                             <div class="">
-                                <a href="https://biohaters.com/" class="button no_hover btn_sm m_auto">Go Back</a>
+                                <a href="http://localhost/biohaters/" class="button no_hover btn_sm m_auto">Go Back</a>
                             </div>
                         </div>
                     </div>
@@ -79,7 +79,7 @@
                         </div>
             
                         <div class="">
-                            <a href="https://biohaters.com/" class="button no_hover btn_sm m_auto">Go Back</a>
+                            <a href="http://localhost/biohaters/" class="button no_hover btn_sm m_auto">Go Back</a>
                         </div>
                     </div>
                 </div>

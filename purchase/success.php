@@ -198,7 +198,7 @@
                     </div>
     
                     <div class="">
-                        <a href="https://biohaters.com/login/" class="button no_hover btn_sm m_auto">Login</a>
+                        <a href="http://localhost/biohaters/login/" class="button no_hover btn_sm m_auto">Login</a>
                     </div>
                 </div>
             </div>
@@ -216,7 +216,7 @@
                     </div>
         
                     <div class="">
-                        <a href="https://biohaters.com/" class="button no_hover btn_sm m_auto">Go Back</a>
+                        <a href="http://localhost/biohaters/" class="button no_hover btn_sm m_auto">Go Back</a>
                     </div>
                 </div>
             </div>
@@ -235,7 +235,7 @@
                 </div>
     
                 <div class="">
-                    <a href="https://biohaters.com/" class="button no_hover btn_sm m_auto">Go Back</a>
+                    <a href="http://localhost/biohaters/" class="button no_hover btn_sm m_auto">Go Back</a>
                 </div>
             </div>
         </div>
@@ -254,7 +254,7 @@
             </div>
 
             <div class="">
-                <a href="https://biohaters.com/" class="button no_hover btn_sm m_auto">Go Back</a>
+                <a href="http://localhost/biohaters/" class="button no_hover btn_sm m_auto">Go Back</a>
             </div>
         </div>
     </div>

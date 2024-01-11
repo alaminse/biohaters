@@ -278,7 +278,7 @@
                                 // grant total
                                 $grant_total = $total_price + $bkash_charge;?>
                                 <!-- COURSE PURCHASE FORM -->
-                                <form action="<?php if ($grant_total == 0) { echo 'https://biohaters.com/purchase-free/'; } else { echo 'https://biohaters.com/purchase/'; }?>" method="post">
+                                <form action="<?php if ($grant_total == 0) { echo 'http://localhost/biohaters/purchase-free/'; } else { echo 'http://localhost/biohaters/purchase/'; }?>" method="post">
                                     <h4 class="single_chapter_card_title">পেমেন্ট ফর্ম</h4>
 
                                     <div class="payment_details">
@@ -340,8 +340,8 @@
                                         }?>
 
                                         <!-- COURSE DETAILS INPUT -->
-                                        <input type="hidden" name="item_id[]" id="" value="<?= $course_id ?>">
-                                        <input type="hidden" name="price[]" id="" value="<?= $exact_price ?>">
+                                        <input type="hidden" name="item_id" id="" value="<?= $course_id ?>">
+                                        <input type="hidden" name="price" id="" value="<?= $exact_price ?>">
                                         <input type="hidden" name="purchase_item" id="" value="1">
 
                                         <!-- TRANSACTION DETAILS INPUT -->

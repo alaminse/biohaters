@@ -83,6 +83,7 @@
                         <a href="?name=HSC 2024 : First Semester" class="button btn_sm <?php echo ($name == 'HSC 2024 : First Semester') ? 'active' : ''; ?>">HSC 2024 : First Semester</a>
                         <a href="?name=HSC 2025 : Second Semester" class="button btn_sm <?php echo ($name == 'HSC 2025 : Second Semester') ? 'active' : ''; ?>">HSC 2025 : Second Semester</a>
                         <a href="?name=HSC 2024 : Second Semester" class="button btn_sm <?php echo ($name == 'HSC 2024 : Second Semester') ? 'active' : ''; ?>">HSC 2024 : Second Semester</a>
+                        <a href="?name=Academic Biology 2nd year-2024" class="button btn_sm <?php echo ($name == 'Academic Biology 2nd year-2024') ? 'active' : ''; ?>">Academic Biology 2nd year-2024</a>
                     </div>
                     <div class="btn_grp">
                         <a href="#" id="printLabelBtn" class="button btn_sm">Print Label</a>

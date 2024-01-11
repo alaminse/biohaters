@@ -118,7 +118,7 @@
                         //     $student_data['total_mark'] = $total_mark;
                         //     $student_data['submit_time'] = $student_submit_time;
                         // }
-                        
+
                         $gain_mark = $student_score;
                         $total_mark = $exam_total_question * $exam_mark_per_question;
                         

@@ -23,7 +23,7 @@ if ($extension_url == 'index.php') {
 // include database
 include('../db/db.php');
 
-$base_url = 'https://biohaters.com/';
+$base_url = 'http://localhost/biohaters/';
 
 // session start
 session_start();

@@ -103,7 +103,7 @@ if ($num_secret == 0) {
         <div class="hc_alert hc_alert_danger">
             <h4 class="hc_alert_title">Secret Files: War Edition - ৬৪ নাম্বার সেট</h4>
             <h6 class="hc_alert_message">যারা ৬৪ নাম্বার সেটটি ভুল পেয়েছেন তারা এখান থেকে ডাউনলোড করে নিতে পারবেন-</h6>
-            <a href="https://biohaters.com/admin/assets/doc_gallery/hc_640909_353109_115758_20231029010821_1020323064.pdf" target="_blank">Download Now</a>
+            <a href="http://localhost/biohaters/admin/assets/doc_gallery/hc_640909_353109_115758_20231029010821_1020323064.pdf" target="_blank">Download Now</a>
         </div>
     </div>
 </section>

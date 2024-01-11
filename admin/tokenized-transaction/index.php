@@ -181,7 +181,7 @@
                                         <td>
                                             <div class="btn_grp">
                                                 <!-- EXECUTE TOKEN -->
-                                                <a href="https://biohaters.com/purchase/success.php?bh_tokenized=<?= $token ?>" class="btn_icon" target="_blank"><i class='bx bx-link-external'></i></a>
+                                                <a href="http://localhost/biohaters/purchase/success.php?bh_tokenized=<?= $token ?>" class="btn_icon" target="_blank"><i class='bx bx-link-external'></i></a>
                                                 
                                                 <!-- DELETE MODAL BUTTON -->
                                                 <button type="button" class="btn_icon" data-bs-toggle="modal" data-bs-target="#refund<?php echo $trx_id; ?>"><i class='bx bxs-share'></i></button>

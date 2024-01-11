@@ -20,10 +20,10 @@ if ($extension_url == 'index.php') {
     <?php 
 }
 
-if ($current_url == 'http://biohaters.com/') {
+if ($current_url == 'http://localhost/biohaters/') {
     ?>
     <script type="text/javascript">
-        window.location.href = 'https://biohaters.com/';
+        window.location.href = 'http://localhost/biohaters/';
     </script>
     <?php 
 }
@@ -31,7 +31,7 @@ if ($current_url == 'http://biohaters.com/') {
 // Set the character set for the output
 header('Content-Type: text/html; charset=utf-8');
 
-$base_url = 'https://biohaters.com/';
+$base_url = 'http://localhost/biohaters/';
 
 // include database
 include('admin/db/db.php');
@@ -358,7 +358,7 @@ include('assets/includes/variable.php');?>
         <section class="banner_section hc_section">
             <div class="t2_banner_container hc_container ep_grid">
                 <div class="t2_banner_content_img">
-                    <a href="https://biohaters.com/course-details/?course=15">
+                    <a href="http://localhost/biohaters/course-details/?course=15">
                         <img src="assets/img/home_banner.png" alt="">
                     </a>
                     <!--<img src="assets/img/banner_logo.png" alt="">-->
@@ -1029,7 +1029,7 @@ include('assets/includes/variable.php');?>
             <!-- added value -->
 
             <div class="hc_container all_view_btn mt_1_5">
-                <a href="https://biohaters.com/all-blog/" class="button btn_sm no_hover">সকল ব্লগ <i class="bx bx-right-arrow-alt"></i></a>
+                <a href="http://localhost/biohaters/all-blog/" class="button btn_sm no_hover">সকল ব্লগ <i class="bx bx-right-arrow-alt"></i></a>
             </div>
         </section>
 

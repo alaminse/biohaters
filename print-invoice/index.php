@@ -20,7 +20,7 @@ if ($extension_url == 'index.php') {
     <?php 
 }
 
-$base_url = 'https://biohaters.com/';
+$base_url = 'http://localhost/biohaters/';
 
 // include database
 include('../admin/db/db.php');

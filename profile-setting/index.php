@@ -151,7 +151,7 @@ if (isset($_POST['update_parent_info'])) {
                     </div>
     
                     <div class="">
-                        <a href="https://biohaters.com/profile-setting/" class="button no_hover btn_sm m_auto">Go Back</a>
+                        <a href="http://localhost/biohaters/profile-setting/" class="button no_hover btn_sm m_auto">Go Back</a>
                     </div>
                 </div>
             </div>
@@ -170,7 +170,7 @@ if (isset($_POST['update_parent_info'])) {
                         </div>
         
                         <div class="">
-                            <a href="https://biohaters.com/profile-setting/" class="button no_hover btn_sm m_auto">Go Back</a>
+                            <a href="http://localhost/biohaters/profile-setting/" class="button no_hover btn_sm m_auto">Go Back</a>
                         </div>
                     </div>
                 </div>

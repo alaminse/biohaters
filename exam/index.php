@@ -151,8 +151,8 @@
                             $course_name = $row_course['name'];
                         }
                         
-                        $si++;
                         if ($now >= $exam_date) {
+                            $si++;
                             ?>
                             <tr>
                                 <td><?= $si ?></td>

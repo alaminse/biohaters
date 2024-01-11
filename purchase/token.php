@@ -1,7 +1,8 @@
 <?php
 
-session_start();
-
+if (session_status() === PHP_SESSION_NONE) {
+    session_start();
+}
 $credentials_json = file_get_contents('config.json'); 
 $credentials_arr = json_decode($credentials_json,true);
 

@@ -73,7 +73,7 @@
                 <div class="hc_alert hc_alert_danger mt_1_5">
                     <h6 class="hc_alert_message">
                         যারা সঠিকভাবে সিক্রেট ফাইলস এন্ট্রি করেছেন। তারা এখানে লগিন করুন || 
-                        <a href="https://biohaters.com/login/">Login Here</a>
+                        <a href="http://localhost/biohaters/login/">Login Here</a>
                     </h6>
                 </div>
             </div>

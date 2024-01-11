@@ -39,6 +39,7 @@ require '../assets/mailer/SMTP.php';?>
 <?php if (isset($_POST['update_courier_info'])) {
     $courier_address    = mysqli_escape_string($db, $_POST['courier_address']);
     $purchase_id        = $_POST['purchase_id'];
+    $course_id        = $_POST['course_id'];
     
     $update_date = date('Y-m-d H:i:s', time());
     
@@ -46,12 +47,12 @@ require '../assets/mailer/SMTP.php';?>
         $courier_alert = '<p class="danger mt_75">আপনার কুরিয়ার ঠিকানা দিন।</p>';
     } else {
         // check updated address
-        $select_updated_address  = "SELECT * FROM hc_courier WHERE student_id = '$student_id'";
+        $select_updated_address  = "SELECT * FROM hc_courier WHERE student_id = '$student_id' AND course_id = '$course_id'";
         $sql_updated_address     = mysqli_query($db, $select_updated_address);
         $num_updated_address     = mysqli_num_rows($sql_updated_address);
         if ($num_updated_address == 0) {
             // insert courier address
-            $insert_courier = "INSERT INTO hc_courier (student_id, purchase_id, courier_address, update_date) VALUES ('$student_id', '$purchase_id', '$courier_address', '$update_date')";
+            $insert_courier = "INSERT INTO hc_courier (student_id, purchase_id, courier_address, update_date, course_id) VALUES ('$student_id', '$purchase_id', '$courier_address', '$update_date', '$course_id')";
             $sql_courier = mysqli_query($db, $insert_courier);
             if ($sql_courier) {
                 echo '<div class="modal_container payment_modal show-modal" id="update-personal-success">
@@ -94,7 +95,7 @@ foreach ($result['my_courses'] as $key => $my_courses) {
     // courses id
     $my_courses_id = $my_courses['item_id'];
     
-    if (($my_courses_id == 4) || ($my_courses_id == 5)) {
+    if (($my_courses_id == 4) || ($my_courses_id == 9) || ($my_courses_id == 5) || ($my_courses_id == 11) || ($my_courses_id == 12)) {
         // if ($my_courses['price'] > 0) {
             // purchase id
             $my_purchase_id = $my_courses['purchase_id'];
@@ -112,7 +113,7 @@ foreach ($result['my_courses'] as $key => $my_courses) {
             }
             
             // check updated address
-            $select_updated_address  = "SELECT * FROM hc_courier WHERE student_id = '$student_id'";
+            $select_updated_address  = "SELECT * FROM hc_courier WHERE student_id = '$student_id' AND course_id = '$my_courses_id'";
             $sql_updated_address     = mysqli_query($db, $select_updated_address);
             $num_updated_address     = mysqli_num_rows($sql_updated_address);
             if ($num_updated_address == 0) {
@@ -123,7 +124,7 @@ foreach ($result['my_courses'] as $key => $my_courses) {
                         <div class="hc_alert hc_alert_success">
                             <h4 class="hc_alert_title">কুরিয়ার ঠিকানা আপডেট নোটিশ</h4>
                             <h6 class="hc_alert_message"><?= $my_course_name ?> কোর্সে ভর্তি শিক্ষার্থীদের গিফট পাঠানো শুরু করা হয়েছে। আপনি আপনার কুরিয়ার ঠিকানা এখানে আপডেট করুন।</h6>
-                            <h6 class="hc_alert_message">নোটঃ আপনার এবং আপনার রিডিং পার্টনারের গিফট একসাথে আপনাকে পাঠানো হবে।</h6>
+                            <!--<h6 class="hc_alert_message">নোটঃ আপনার এবং আপনার রিডিং পার্টনারের গিফট একসাথে আপনাকে পাঠানো হবে।</h6>-->
                 
                             <form action="" method="post" class="single_col_form mt_75">
                                 <?= $courier_alert ?>
@@ -133,6 +134,8 @@ foreach ($result['my_courses'] as $key => $my_courses) {
                                 </div>
                                 
                                 <input type="hidden" id="" name="purchase_id" value="<?= $my_purchase_id ?>">
+                                
+                                <input type="hidden" id="" name="course_id" value="<?= $my_courses_id ?>">
                 
                                 <button type="submit" name="update_courier_info" class="">Update Courier Address</button>
                             </form>
@@ -142,20 +145,6 @@ foreach ($result['my_courses'] as $key => $my_courses) {
                 <?php 
             }
         // }
-    }
-    
-    if ($my_courses_id == 9) {
-        ?>
-        <!--=========== ALERT SECTION ===========-->
-        <section class="profile_alert_section hc_section">
-            <div class="hc_container">
-                <div class="hc_alert hc_alert_info">
-                    <h4 class="hc_alert_title">শর্ট সিলেবাস ফাইনাল পরীক্ষা</h4>
-                    <h6 class="hc_alert_message">দুঃখিত, রুটিন অনুযায়ী আগামী ২৬ নভেম্বর আপনাদের শর্ট সিলেবাস ফাইনাল পরীক্ষাটি অনুষ্ঠিত হচ্ছে না। এর পরিবর্তে আগামী ২ ডিসেম্বর পরীক্ষা অনুষ্ঠিত হবে। আপনারা ২ ও ৩ তারিখ সরাসরি অফিসে এসে পরীক্ষায় অংশ নিতে পারবেন।</h6>
-                </div>
-            </div>
-        </section>
-        <?php 
     }
 }?>
 
@@ -211,7 +200,19 @@ foreach ($result['my_courses'] as $key => $my_courses) {
 <!--        </div>-->
 <!--    </div>-->
 <!--</section>-->
+<?php
+    
+    $ab24 = "SELECT * FROM hc_course WHERE name = 'Academic Biology 2nd year-2024' AND status = 1 AND is_delete = 0 ORDER BY id DESC";
+    $sql_my_course     = mysqli_query($db, $ab24);
+    $num_my_course     = mysqli_num_rows($sql_my_course);
+    if ($num_my_course > 0) {
+        $row_my_course = mysqli_fetch_assoc($sql_my_course);
 
+        // my course variable
+        $my_course_id   = $row_my_course['id'];
+        $my_course_name = $row_my_course['name'];
+    }
+?>
 <!--==== MAIN CONTAINER ====-->
 <section class="dashboard_section hc_section">
     <div class="dashboard_container hc_container ep_grid">

@@ -158,7 +158,7 @@
             }
             
             $phone = $phone;
-            $msg = "You have successfully purchased " . $course_name . "\rYou can login our website: https://biohaters.com/login/ \r-Biology Haters";
+            $msg = "You have successfully purchased " . $course_name . "\rYou can login our website: http://localhost/biohaters/login/ \r-Biology Haters";
             
             // send OTP by sms
             $to = "$phone";

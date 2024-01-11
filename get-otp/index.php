@@ -142,7 +142,7 @@ if (isset($_POST['get_otp'])) {
 				
 				$msg = "Your Login OTP Code - " . $otp . "\r-Biology Haters";
 				
-				$email_msg = "Your Login OTP Code - " . $otp . "<br>Your otp page link - https://biohaters.com/get-otp/?tokenized=" . $token . " <br>-Biology Haters";
+				$email_msg = "Your Login OTP Code - " . $otp . "<br>Your otp page link - http://localhost/biohaters/get-otp/?tokenized=" . $token . " <br>-Biology Haters";
 				
 				// send OTP by sms
                 $to = "$phone";
@@ -226,7 +226,7 @@ if (isset($_POST['get_otp'])) {
 					
 					$msg = "Your Login OTP Code - " .$otp . "\r-Biology Haters";
 					
-					$email_msg = "Your Login OTP Code - " . $otp . "<br>Your otp page link - https://biohaters.com/get-otp/?tokenized=" . $token . " <br>-Biology Haters";
+					$email_msg = "Your Login OTP Code - " . $otp . "<br>Your otp page link - http://localhost/biohaters/get-otp/?tokenized=" . $token . " <br>-Biology Haters";
 					
 					// send OTP by sms
                     $to = "$phone";

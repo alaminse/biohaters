@@ -5,16 +5,30 @@
 $credentials_json = file_get_contents('config.json'); 
 $credentials_arr = json_decode($credentials_json,true);
 
-// gateway function
-function create($url)
+$grant_total;
+if(isset($_POST['item_id']) && isset($_POST['grant_total']))
+{
+    $course_id = $_POST['item_id'];
+
+    $select_related_course  = "SELECT * FROM hc_course WHERE id = '$course_id' AND status = 1 AND is_delete = 0";
+    $sql_related_course     = mysqli_query($db, $select_related_course);
+    $num_course_module    = mysqli_num_rows($sql_related_course);
+    if ($num_course_module > 0) {
+        while($course = mysqli_fetch_assoc($sql_related_course)) {
+            $grant_total = $course['sale_price'];
+        }
+    }
+}
+
+function create($url, $grant_total)
 {
     getToken();
     global $credentials_arr;
     $post_token = array(
         'mode' => '0011',
-        'amount' => $_POST['grant_total'] ? $_POST['grant_total'] : 1,
+        'amount' => $grant_total,
         'payerReference' => " ",
-        'callbackURL' => "https://biohaters.com/purchase/callback.php?" . $url, // Your callback URL
+        'callbackURL' => "http://localhost/biohaters/purchase/callback.php?" . $url, // Your callback URL
         'currency' => 'BDT',
         'intent' => 'sale',
         'merchantInvoiceNumber' => 'Inv'.rand()
@@ -35,10 +49,11 @@ function create($url)
     curl_setopt($url, CURLOPT_FOLLOWLOCATION, 1);
     $result_data = curl_exec($url);
     curl_close($url);
-
+    
     $response = json_decode($result_data, true);
-
-    header("Location: ".$response['bkashURL']); 
+    $bkashURL = $response['bkashURL'];
+    print_r($bkashURL);
+    header("Location: ".$bkashURL);
     exit;
 }
 
@@ -57,7 +72,8 @@ if (isset($_POST['checkout'])) {
     $purchase_item  = mysqli_escape_string($db, $_POST['purchase_item']);
     $subtotal       = mysqli_escape_string($db, $_POST['subtotal']);
     $bkash_charge   = mysqli_escape_string($db, $_POST['bkash_charge']);
-    $grant_total    = mysqli_escape_string($db, $_POST['grant_total']);
+    $grant_total    = $grant_total;
+    // $grant_total    = mysqli_escape_string($db, $_POST['grant_total']);
 
     if (empty($name) || empty($email) || empty($phone)) {
         ?>
@@ -160,16 +176,17 @@ if (isset($_POST['checkout'])) {
                         $url = "bh_tokenized=".$token;
                 
                         // collect item id & price
-                        foreach ($_POST['item_id'] as $key_item => $item_id) {
-                            $item_id = $item_id;
-                            $price = $_POST['price'][$key_item];
+                        // foreach ($_POST['item_id'] as $key_item => $item_id) {
+                        if($_POST['item_id']) {
+                            $item_id = $_POST['item_id'];
+                            $price = $_POST['price'];
             
                             // insert tokenized information
                             $insert = "INSERT INTO hc_purchase_token (payment_token, price, subtotal, charge, total_amount, name, email, phone, purchase_item, item_id, token_date) VALUES ('$token', '$price', '$subtotal', '$bkash_charge', '$grant_total', '$name', '$email', '$phone', '$purchase_item', '$item_id', '$token_date')";
                             mysqli_query($db, $insert);
                         }
                         
-                        echo create($url);
+                        echo create($url, $grant_total);
                     } else {
                         ?>
                         <div class="modal_container payment_modal show-modal" id="">

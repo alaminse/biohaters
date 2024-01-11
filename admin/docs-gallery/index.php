@@ -114,7 +114,7 @@ if (isset($_POST['delete'])) {
                         $created_date   = $row['created_date'];
                         $si++;
 
-                        $copy_link = "https://biohaters.com/admin".substr($doc_link, 2);
+                        $copy_link = "http://localhost/biohaters/admin".substr($doc_link, 2);
                         ?>
                         <div class="gallery_video height_max">
                             <div class="gallery_video_data"><?= $doc_name ?></div>
