@@ -6,19 +6,52 @@ $credentials_json = file_get_contents('config.json');
 $credentials_arr = json_decode($credentials_json,true);
 
 $grant_total;
-if(isset($_POST['item_id']) && isset($_POST['grant_total']))
-{
-    $course_id = $_POST['item_id'];
 
-    $select_related_course  = "SELECT * FROM hc_course WHERE id = '$course_id' AND status = 1 AND is_delete = 0";
-    $sql_related_course     = mysqli_query($db, $select_related_course);
-    $num_course_module    = mysqli_num_rows($sql_related_course);
-    if ($num_course_module > 0) {
-        while($course = mysqli_fetch_assoc($sql_related_course)) {
-            $grant_total = $course['sale_price'];
-        }
+if (isset($_POST['item_id']) && isset($_POST['grant_total'])) {
+    $table = (isset($_POST['chapter_id'])) ? 'hc_chapter' : 'hc_course';
+    $item_id = $_POST['item_id'];
+    $sql = "SELECT * FROM $table WHERE id = '$item_id' AND status = 1 AND is_delete = 0";
+    $sql_details = mysqli_query($db, $sql);
+
+    if ($sql_details && ($num_rows = mysqli_num_rows($sql_details)) > 0) {
+        $data = mysqli_fetch_assoc($sql_details);
+        $grant_total = $data['sale_price'] ?: $data['price'];
     }
 }
+
+// if(isset($_POST['item_id']) && isset($_POST['grant_total']))
+// {
+//     if($_POST['chapter_id'])
+//     {
+//         $chapter_id = $_POST['item_id'];
+//         $select_related_chapter  = "SELECT * FROM hc_chapter WHERE id = '$chapter_id' AND status = 1 AND is_delete = 0";
+//         $sql_related_chapter     = mysqli_query($db, $select_related_chapter);
+//         $num_chapter_module    = mysqli_num_rows($sql_related_chapter);
+//         if ($num_chapter_module > 0) {
+//             while($chapter = mysqli_fetch_assoc($sql_related_chapter)) {
+//                 $grant_total = $chapter['sale_price'];
+//                 if(!$chapter['sale_price'])
+//                 {
+//                     $grant_total = $chapter['price']; 
+//                 }
+//             }
+//         }
+//     } else {
+//         $course_id = $_POST['item_id'];
+//         $select_related_course  = "SELECT * FROM hc_course WHERE id = '$course_id' AND status = 1 AND is_delete = 0";
+//         $sql_related_course     = mysqli_query($db, $select_related_course);
+//         $num_course_module    = mysqli_num_rows($sql_related_course);
+//         if ($num_course_module > 0) {
+//             while($course = mysqli_fetch_assoc($sql_related_course)) {
+//                 $grant_total = $course['sale_price'];
+//                 if(!$course['sale_price'])
+//                 {
+//                     $grant_total = $course['price']; 
+//                 }
+//             }
+//         }
+//     }
+// }
 
 function create($url, $grant_total)
 {
@@ -28,7 +61,7 @@ function create($url, $grant_total)
         'mode' => '0011',
         'amount' => $grant_total,
         'payerReference' => " ",
-        'callbackURL' => "http://localhost/biohaters/purchase/callback.php?" . $url, // Your callback URL
+        'callbackURL' => "https://biohaters.com/purchase/callback.php?" . $url, // Your callback URL
         'currency' => 'BDT',
         'intent' => 'sale',
         'merchantInvoiceNumber' => 'Inv'.rand()
@@ -52,7 +85,7 @@ function create($url, $grant_total)
     
     $response = json_decode($result_data, true);
     $bkashURL = $response['bkashURL'];
-    print_r($bkashURL);
+ 
     header("Location: ".$bkashURL);
     exit;
 }

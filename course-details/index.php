@@ -292,9 +292,14 @@
                                             <p>৳<?= $bkash_charge ?></p>
                                         </div>
 
+                                        <div class="ep_flex coupon">
+                                            <p class="text_semi">Discount: </p>
+                                            <p>৳ <span class="cpn_mone"></span> </p>
+                                        </div>
+
                                         <div class="ep_flex grant_total">
                                             <p class="text_semi">মোট ফীঃ </p>
-                                            <p>৳<?= $grant_total ?></p>
+                                            <p id="grand_total">৳<?= $grant_total ?></p>
                                         </div>
                                     </div>
 
@@ -348,7 +353,18 @@
                                         <input type="hidden" name="subtotal" value="<?= $total_price ?>">
                                         <input type="hidden" name="bkash_charge" value="<?= $bkash_charge ?>">
                                         <input type="hidden" name="grant_total" value="<?= $grant_total ?>">
-
+                                        <div style="display: flex; gap: 10px;">
+                                        <?php
+                                            if($course_id == 16 || $course_id == 17)
+                                            {
+                                                ?>
+                                                    <form id="coupon_apply">
+                                                        <input type="text" name="coupon_code" style="width: 50%;" class="mt_75" placeholder="Coupon">
+                                                        <button type="button" name="coupon" style="width: 50%;" class="mt_75" onclick="applyCoupon()">Apply</button>
+                                                    </form>
+                                                <?php
+                                            }
+                                        ?></div>
                                         <button type="submit" name="checkout" class="w_100 mt_75">পেমেন্ট করুন</button>
                                     </div>
                                 </form>
@@ -469,5 +485,39 @@
     </script>
     <?php 
 }?>
+
+<script>
+    function applyCoupon() {
+        var coupon_code = document.querySelector('input[name="coupon_code"]').value;
+
+        var xhr = new XMLHttpRequest();
+        xhr.open("POST", "coupon.php", true);
+        xhr.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+
+        xhr.onreadystatechange = function () {
+            if (xhr.readyState == 4 && xhr.status == 200) {
+                // You can handle the response if needed
+                var response = xhr.responseText;
+                console.log("Response:", response);
+
+                // Update the HTML to display the discount amount
+                updateDiscount(response);
+            }
+        };
+        xhr.send("coupon_code=" + encodeURIComponent(coupon_code));
+    }
+
+    function updateDiscount(discountAmount) {
+        // Update the content of the element with the class 'cpn_mone'
+        document.querySelector('.cpn_mone').textContent = discountAmount;
+
+        // Update the grand total by subtracting the discount amount
+        var grandTotalElement = document.getElementById('grand_total');
+        var currentGrandTotal = parseFloat(grandTotalElement.innerText.replace('৳', ''));
+        var newGrandTotal = currentGrandTotal - parseFloat(discountAmount);
+        grandTotalElement.textContent = '৳' + newGrandTotal.toFixed(2);
+    }
+</script>
+
 
 <?php include('../assets/includes/footer.php'); ?>
